@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>rsvp plz!</h1>
+    <form action="view" method="POST">
+        {{form.hidden_tag()}}
+        r u coming???
+        {% for subfield in form.rsvp %}
+            <tr>
+                <td>{{ subfield }}</td>
+                <td> </td>
+                <td>{{ subfield.label}}</td>
+            </tr>
+        {% endfor %}
+        <br><br>
+        what r u bringing???
+        {{form.dish()}}
+        <br><br>
+        what color r u!!!!
+        <br>
+        {% set ns=namespace(i=1, max_cols=5) %}
+        <table align="center">
+            <tr>
+            {% for subfield in form.color %}
+                <td>
+                    <img src="/static/penguins/{{subfield.data}}" width="100px" />
+                    <br>{{subfield}}
+                </td>
+                {% if ns.i % ns.max_cols == 0 %}
+                    </tr><tr>
+                {% endif %}
+                {% set ns.i = ns.i+1 %}
+            {% endfor %}
+            </tr>
+        </table>
+        {{form.submit()}}
+    </form>
+{% endblock %}
