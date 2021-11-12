@@ -5,11 +5,47 @@
     <div class="row">
         <div class="column">
             <h2>going</h2>
-            ...
+            {% set ns=namespace(i=1, max_cols=4) %}
+            <table align="center">
+                <tr>
+                    {% for user in yes %}
+                        <td margin="10px">
+                            {% if user.dish %}
+                                <div class="bubble bubble-bottom-left">
+                                    {{user.dish}}
+                                </div>
+                            {% endif %}
+                            <br>
+                            <img src="/static/penguins/{{user.color}}" width="100px"/>
+                            <br>
+                            {{user.first}} {{user.last[0]}}
+                        </td>
+                        {% if ns.i % ns.max_cols == 0 %}
+                            </tr><tr>
+                        {% endif %}
+                        {% set ns.i = ns.i+1 %}
+                    {% endfor %}
+                </tr>
+            </table>
         </div>
         <div class="column">
             <h2>not going</h2>
-            ...
+            {% set ns=namespace(i=1, max_cols=4) %}
+            <table align="center">
+                <tr>
+                    {% for user in no %}
+                        <td>
+                            <img src="/static/penguins/{{user.color}}" width="100px"/>
+                            <br>
+                            {{user.first}} {{user.last[0]}}
+                        </td>
+                        {% if ns.i % ns.max_cols == 0 %}
+                            </tr><tr>
+                        {% endif %}
+                        {% set ns.i = ns.i+1 %}
+                    {% endfor %}
+                </tr>
+            </table>
         </div>
     </div>
     </form>

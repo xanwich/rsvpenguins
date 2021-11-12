@@ -10,6 +10,7 @@ class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     first = db.Column(db.String(64), index=True, unique=False)
     last = db.Column(db.String(64), index=True, unique=False)
+    rsvp = db.Column(db.String(3), index=True, unique=False)
     dish = db.Column(db.String(254), index=False, unique=False)
     color = db.Column(db.String(64))
 

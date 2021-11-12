@@ -32,9 +32,21 @@ def index():
 @app.route("/edit", methods=["GET", "POST"])
 def edit():
     form = RSVPForm()
+    if form.validate_on_submit():
+        current_user.rsvp = form.rsvp.data
+        current_user.dish = form.dish.data
+        current_user.color = form.color.data
+        db.session.commit()
+        return redirect('/view')
     return render_template("/edit.html", form=form, first=current_user.first)
 
 @login_required
 @app.route("/view", methods=["GET", "POST"])
 def view():
-    return render_template("/view.html")
+    rsvp_yes = User.query.filter_by(rsvp='yes')
+    rsvp_no = User.query.filter_by(rsvp='no')
+    return render_template(
+        "/view.html",
+        yes=rsvp_yes,
+        no=rsvp_no,
+    )
