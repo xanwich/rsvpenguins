@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css?family=Patrick+Hand');
+
+.half_background {
+  background: linear-gradient(to top, #FAE596 50%, transparent 50%);
+}
+
+.nopad {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.breaks {
+    white-space: pre-wrap;
+}
+
+
+input, select, textarea {
+    font-family: "Patrick Hand", sans-serif;
+    font-weight: 400;
+    font-size: 16pt;
+}
+
+html, body {
+    text-align: center;
+    background-color: #f7beea;
+    margin-top: 25px;
+    margin-left: 50px;
+    margin-right: 50px;
+    font-size: 16pt;
+    font-family: "Patrick Hand", sans-serif;
+    line-height: 1;
+    color: white;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+    /*max-width: 65ch;*/
+}
+
+a {
+    color: inherit;
+    text-decoration: inherit;
+}
+a:link {
+    background: linear-gradient(to top, #F9DC77 50%, transparent 50%);
+}
+
+a:hover {
+    background: linear-gradient(to top, #C53E3E 50%, transparent 50%);
+}
