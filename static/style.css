@@ -1,6 +1,70 @@
 @import url('https://fonts.googleapis.com/css?family=Patrick+Hand');
 @import url('https://fonts.googleapis.com/css?family=Comic+Neue');
 
+@media only screen and (max-width: 1000px) {
+  .column {
+    float: none;
+    width: 50%;
+  }
+  /* Clear floats after the columns */
+  .row:after {
+    align-items: center;
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+@media 
+only screen and (max-width: 600px){
+
+  /* Force table to not be like tables anymore */
+  table, thead, tbody, th, td, tr { 
+    display: block; 
+  }
+  
+  /* Hide table headers (but not display: none;, for accessibility) */
+  thead tr { 
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+  
+  /*tr { border; none; }*/
+  
+  td { 
+    /* Behave  like a "row" */
+    border: none;
+    /*border-bottom: 1px solid #eee; */
+    position: relative;
+    padding-left: 50%; 
+  }
+  
+  td:before { 
+    /* Now like a table header */
+    position: absolute;
+    /* Top/left values mimic padding */
+    to/*p: 6px;
+    left: 6px;
+    width: 45%; 
+    padding*/-right: 10px; 
+    white-space: nowrap;
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  .column {
+    float: left;
+    width: 50%;
+  }
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
 .half_background {
   background: linear-gradient(to top, #FAE596 50%, transparent 50%);
 }
@@ -46,29 +110,11 @@ html, body {
     /*max-width: 65ch;*/
 }
 
-a {
-    color: inherit;
-    text-decoration: inherit;
-}
-a:link {
-    background: linear-gradient(to top, #F9DC77 50%, transparent 50%);
+.navbar {
+  color: black;
 }
 
-a:hover {
-    background: linear-gradient(to top, #C53E3E 50%, transparent 50%);
-}
 
-.column {
-  float: left;
-  width: 50%;
-}
-
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
 
 .bubble {
   position: relative;

@@ -9,6 +9,7 @@ from forms import NameForm, RSVPForm
 
 
 @app.route("/", methods=['GET', 'POST'])
+@app.route("/login", methods=['GET', 'POST'])
 def index():
     logout_user()
     form = NameForm()
@@ -26,27 +27,47 @@ def index():
         else:
             login_user(user)
             return redirect('/view')
-    return render_template("/login.html", form=form)
+    return render_template(
+        "/login.html",
+        home=True,
+        view=False,
+        form=form,
+    )
 
-@login_required
 @app.route("/edit", methods=["GET", "POST"])
+@login_required
 def edit():
     form = RSVPForm()
+    if current_user.dish:
+        form.dish.render_kw['placeholder'] = current_user.dish
     if form.validate_on_submit():
         current_user.rsvp = form.rsvp.data
         current_user.dish = form.dish.data
         current_user.color = form.color.data
         db.session.commit()
         return redirect('/view')
-    return render_template("/edit.html", form=form, first=current_user.first)
+    return render_template(
+        "/edit.html",
+        home=False,
+        view=False,
+        form=form,
+        first=current_user.first,
+    )
 
-@login_required
 @app.route("/view", methods=["GET", "POST"])
+@login_required
 def view():
     rsvp_yes = User.query.filter_by(rsvp='yes')
     rsvp_no = User.query.filter_by(rsvp='no')
     return render_template(
         "/view.html",
+        home=False,
+        view=True,
         yes=rsvp_yes,
         no=rsvp_no,
     )
+
+
+@login_manager.unauthorized_handler
+def unauthorized_callback():
+    return redirect('/')

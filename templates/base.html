@@ -8,6 +8,19 @@
     {% endblock %}
 </head>
 <body>
-{% block content %}{% endblock %}
+    <div class='navbar'>
+        <menubar>
+            {% if not home %}
+                <a href="/">logout</a> -
+            {% endif %}
+
+            friendsgiving - saturday, november 27 - 657 flatbush ave. #1 11225
+
+            {% if view %}
+                - <a href="/edit">edit my response</a>
+            {% endif %}
+        </menubar>
+    </div>
+    {% block content %}{% endblock %}
 </body>
 </html>
